@@ -1,43 +1,26 @@
 import Ship from './Ship';
 
 test('returns something', () => {
-  expect(Ship('destroyer')).not.toBeUndefined();
+  expect(Ship(2)).not.toBeUndefined();
 });
 
-test('returns the right size', () => {
-  expect(Ship('carrier').length).toBe(5);
-  expect(Ship('battleship').length).toBe(4);
-  expect(Ship('destroyer').length).toBe(3);
-  expect(Ship('submarine').length).toBe(3);
-  expect(Ship('patrol boat').length).toBe(2);
+test('returns obj', () => {
+  expect(Ship(2) instanceof Object).toEqual(true);
 });
 
-describe('health area', () => {
-  const myShip = Ship('carrier');
-  beforeEach(() => {
-    myShip.isHit();
-  });
-  test('returns health', () => {
-    expect(myShip.getHealth()).not.toBeUndefined();
-    expect(myShip.getHealth()).toBeLessThan(5);
-  });
-  test('another attack', () => {
-    expect(myShip.getHealth()).toBeLessThan(4);
-  });
+test('returns length', () => {
+  expect(Ship(2).length).toEqual(2);
+  expect(Ship(4).length).toEqual(4);
+  expect(Ship(5).length).toEqual(5);
 });
 
-describe('health below zero', () => {
-  const myShip = Ship();
-  beforeEach(() => {
-    myShip.isHit();
-  });
-  test('Subtracts health', () => {
-    expect(myShip.getHealth()).toBeLessThan(2);
-  });
-  test('zero', () => {
-    expect(myShip.getHealth()).toEqual(0);
-  });
-  test('shouldNotGoBelowZero', () => {
-    expect(myShip.getHealth()).toBeGreaterThan(-1);
-  });
+test('rejects non number', () => {
+  expect(Ship('test')).toBeUndefined();
+  expect(Ship([2])).toBeUndefined();
+  expect(Ship({})).toBeUndefined();
+});
+
+test('only accept int', () => {
+  expect(Ship(2.3)).toBeUndefined();
+  expect(Ship(3.64646984984)).toBeUndefined();
 });

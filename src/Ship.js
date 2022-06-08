@@ -1,52 +1,19 @@
 /* eslint-disable no-return-assign */
 
-const Ship = (shipName, position) => {
-  // helper functions
-  const getLength = () => {
-    let length;
-    switch (shipName) {
-      case 'carrier':
-        length = 5;
-        return length;
-      case 'battleship':
-        length = 4;
-        return length;
-      case 'destroyer':
-        length = 3;
-        return length;
-      case 'submarine':
-        length = 3;
-        return length;
-      default:
-        length = 2;
-        return length;
-    }
-  };
-
-  // ship obj
+const Ship = (leng) => {
+  // sanitizer
+  if (typeof leng !== 'number' || !Number.isInteger(leng)) return undefined;
+  const length = parseInt(leng, 10);
   let sunk = false;
-  let coordinates = position;
-  const name = shipName;
-  const length = getLength(name);
-  let health = length;
-  const getHealth = () => health;
-  const isSunk = () => {
-    if (health > 0) return;
-    sunk = true;
-  };
-  const isHit = () => {
-    if (!sunk) health -= 1;
-    isSunk();
-  };
+  // game array
+  let tiles = [...Array(leng).keys()];
+
+  console.log(tiles);
 
   return {
-    name,
-    length,
-    coordinates,
-    getHealth,
-    isHit,
-    isSunk
+    length
   };
 };
 
+// Ship(22);
 export default Ship;
