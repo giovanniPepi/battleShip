@@ -4,8 +4,10 @@ test('returns something', () => {
   expect(Gameboard()).not.toBeUndefined();
 });
 
-test('gameboard should be an array of 100', () => {
-  expect(Gameboard().gameArray.length).toEqual(100);
+test('gameboard should be an array of 10 x 10', () => {
+  expect(Gameboard().gameArray.length).toEqual(10);
+  expect(Gameboard().gameArray[0].length).toEqual(10);
+  expect(Gameboard().gameArray[9].length).toEqual(10);
 });
 
 const newCarrier = Gameboard().placeShip('Carrier');
@@ -20,4 +22,8 @@ test('should create new Ships with right length', () => {
   expect(newDestroyer.length).toBe(3);
   expect(newSubmarine.length).toBe(3);
   expect(newPatrolBoat.length).toBe(2);
+});
+
+test('should accept coords in XY format', () => {
+  expect();
 });

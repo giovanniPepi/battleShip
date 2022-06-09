@@ -1,9 +1,19 @@
 import Ship from './Ship';
 
 const Gameboard = () => {
-  const gameArray = Array(100).fill(undefined, 0);
+  const gameArray = [];
 
-  const placeShip = (name) => {
+  // creates an array for every array item
+  const setGameboard = (() => {
+    for (let a = 0; a < 10; a += 1) {
+      gameArray[a] = [];
+      for (let b = 0; b < 10; b += 1) {
+        gameArray[a].push([false]);
+      }
+    }
+  })();
+
+  const placeShip = (name, coords) => {
     let leng;
 
     switch (name) {
@@ -25,6 +35,9 @@ const Gameboard = () => {
     }
 
     const ship = Ship(leng);
+
+    const location = [];
+    location.push(coords);
 
     return ship;
   };
