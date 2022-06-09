@@ -13,33 +13,15 @@ const Gameboard = () => {
     }
   })();
 
-  const placeShip = (name, coords) => {
-    let leng;
+  const placeShip = (index1, index2, length, dir) => {
+    const ship = Ship(length);
+    let shipPos = 0;
 
-    switch (name) {
-      case 'Carrier':
-        leng = 5;
-        break;
-      case 'Battleship':
-        leng = 4;
-        break;
-      case 'Destroyer':
-        leng = 3;
-        break;
-      case 'Submarine':
-        leng = 3;
-        break;
-      default:
-        leng = 2;
-        break;
+    if (dir === 'h') {
+      for (let i = index1; i < index2 + ship.length; i += 1) {
+        gameArray[index1].splice(i, 1, { ship, shipPos });
+      }
     }
-
-    const ship = Ship(leng);
-
-    const location = [];
-    location.push(coords);
-
-    return ship;
   };
 
   return {
