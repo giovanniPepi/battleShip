@@ -1,16 +1,45 @@
-/* eslint-disable operator-linebreak */
-/* eslint-disable no-return-assign */
+class Ship {
+  constructor(length) {
+    this.length = length;
+    this.ship = this.buildShip();
+  }
 
-import { electron } from 'webpack';
+  buildShip() {
+    const shipArray = [];
+    let i = this.length;
 
-const Ship = (id, length, isVertical, startCoord) => {
-  // array that keeps track of hit locations
-  const hitLocations = Array(length);
-  const hit = (position) => {
-    hitLocations[position] = 'hit';
-  };
+    while (i > 0) {
+      shipArray.push({ hit: false });
+      i -= 1;
+    }
+    return shipArray;
+  }
 
-  const isSunk = () => hitLocations.every((element) => element === 'hit');
-};
+  getShip() {
+    return this.ship;
+  }
+
+  getShipLength() {
+    return this.ship.length;
+  }
+
+  hit(index) {
+    this.ship[index].hit = true;
+  }
+
+  static getHit(item) {
+    if (item.hit === true) {
+      return true;
+    }
+    return false;
+  }
+
+  isSunk() {
+    if (this.ship.every(this.checkHit)) {
+      return true;
+    }
+    return false;
+  }
+}
 
 export default Ship;
