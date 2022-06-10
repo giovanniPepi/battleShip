@@ -27,7 +27,8 @@ class Ship {
     this.ship[index].hit = true;
   }
 
-  static getHit(item) {
+  // eslint-disable-next-line class-methods-use-this
+  checkHit(item) {
     if (item.hit === true) {
       return true;
     }
