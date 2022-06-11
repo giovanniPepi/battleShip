@@ -1,4 +1,4 @@
-class Gameboard {
+class GameBoard {
   constructor() {
     this.gameBoardArray = this.buildGameBoard();
     this.missedAttacks = [];
@@ -77,4 +77,4 @@ class Gameboard {
   }
 }
 
-export default Gameboard;
+export default GameBoard;
