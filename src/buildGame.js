@@ -2,6 +2,7 @@ import Ship from './Ship';
 import GameBoard from './GameBoard';
 import Player from './Player';
 import AI from './ai';
+import placeAIShip from './placeAIShip';
 
 const buildGame = () => {
   // gameboards
@@ -26,6 +27,14 @@ const buildGame = () => {
   const AIsubmarine = new Ship(3);
   const AIpatrolboat = new Ship(2);
 
+  // places AI Ships
+  placeAIShip(AIcarrier, AIBoard);
+  placeAIShip(AIbattleship, AIBoard);
+  placeAIShip(AIdestroyer, AIBoard);
+  placeAIShip(AIsubmarine, AIBoard);
+  placeAIShip(AIpatrolboat, AIBoard);
+
+  console.log(AIBoard);
   return {
     carrier,
     battleship,
