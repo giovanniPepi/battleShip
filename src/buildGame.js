@@ -3,6 +3,8 @@ import GameBoard from './GameBoard';
 import Player from './Player';
 import AI from './ai';
 import placeAIShip from './placeAIShip';
+import domQueries from './domQueries';
+import makeDraggable from './makeDraggable';
 
 const buildGame = () => {
   // gameboards
@@ -27,6 +29,13 @@ const buildGame = () => {
   const AIsubmarine = new Ship(3);
   const AIpatrolboat = new Ship(2);
 
+  // makes player boats draggable
+  makeDraggable(domQueries().battleshipHTML);
+  makeDraggable(domQueries().carrierHTML);
+  makeDraggable(domQueries().submarinehipHTML);
+  makeDraggable(domQueries().destroyerHTML);
+  makeDraggable(domQueries().patrolboatHTML);
+
   // places AI Ships
   placeAIShip(AIcarrier, AIBoard);
   placeAIShip(AIbattleship, AIBoard);
@@ -34,7 +43,164 @@ const buildGame = () => {
   placeAIShip(AIsubmarine, AIBoard);
   placeAIShip(AIpatrolboat, AIBoard);
 
-  console.log(AIBoard);
+  // places boards on DOM
+  const buildDOMboard = (boardName) => {
+    const boardClass = document.querySelector(`.${boardName}`);
+    for (let i = 0; i < 10; i += 1) {
+      for (let j = 0; j < 10; j += 1) {
+        const cell = document.createElement('div');
+        cell.classList.add('cell');
+        cell.setAttribute('data-x', j);
+        cell.setAttribute('data-y', i);
+
+        // adds attacking through DOM
+        if (boardName === 'AIBoard') {
+          cell.addEventListener('click', (e) => {
+            attack(e.target);
+          });
+        } else if (boardName === 'playerBoard') {
+          cell.addEventListener('dragover', (e) => {
+            e.preventDefault();
+          });
+          cell.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dropShip(e);
+          });
+        }
+        boardClass.appendChild(cell);
+      }
+    }
+  };
+
+  buildDOMboard('playerBoard');
+  buildDOMboard('aiBoard');
+
+  // updates DOM
+  const updateDisplay = (boardName, board) => {
+    const boardArray = board.getGameBoard();
+    const missed = board.getMissedAttacks();
+
+    boardArray.forEach((row, y) => {
+      row.forEach((cell, x) => {
+        if (cell.shipName) {
+          if (
+            cell.shipName.checkHit(cell.shipName.getShip()[cell.shipIndex]) ===
+            true
+          ) {
+            const selectedCell = document.querySelector(
+              `.${boardName} [data-x="${x}"][data-y ="${y}"]`
+            );
+            selectedCell.textContent = 'X';
+            selectedCell.classList.add('hit');
+            selectedCell.classList.remove('occupied');
+          } else if (
+            cell.shipName.checkHit(cell.shipName.getShip()[cell.shipIndex]) ===
+            false
+          ) {
+            if (boardName === 'playerBoard') {
+              const selectedCell = document.querySelector(
+                `.${boardName} [data-x="${x}"][data-y ="${y}"]`
+              );
+              selectedCell.classList.add('occupied');
+            }
+          }
+        }
+      });
+    });
+    missed.forEach((attack) => {
+      const selectedCell = document.querySelector(
+        `.${boardName} [data-x="${attack.x}"][data-y ="${attack.y}"]`
+      );
+      selectedCell.textContent = 'X';
+      selectedCell.classList.add('missed');
+    });
+  };
+
+  // calls for winner
+  const endGame = (winner) => {
+    domQueries().endGameModal.style.display = 'block';
+    domQueries().winnerText.textContent = `${winner} is the winner!`;
+  };
+
+  // attacks
+  const attack = (e) => {
+    let x = e.getAttribute('data-x');
+    let y = e.getAttribute('data-y');
+    player.attack(x, y, ai, AIBoard);
+    updateDisplay('AIBoard', AIBoard);
+    e.style.pointerEvents = 'none';
+
+    // checks if all ships are met and calls for winner before each round
+    if (AIBoard.checkAllSunk()) {
+      endGame(player.getName());
+    }
+
+    ai.generateRandomAttack();
+    updateDisplay('playerBoard', playerBoard);
+
+    if (playerBoard.checkAllSunk()) {
+      endGame('AI');
+    }
+  };
+
+  // dropShip - through dragging
+  const dropShip = (e) => {
+    const data = e.dataTransfer.getData('text');
+    const x = parseInt(e.target.getAttribute('data-x'), 10);
+    const y = parseInt(e.target.getAttribute('data-y'), 10);
+
+    // helper function
+    const setBoardToDom = (boat) => {
+      playerBoard.placeShip(boat, x, y);
+      updateDisplay('playerBoard', playerBoard);
+      const ship = document.querySelector(`#${data}`);
+      domQueries().addShips.removeChild(ship);
+      if (domQueries().addShips.childNodes.length <= 6) {
+        domQueries().addShips.style.display = 'none';
+        domQueries().aiSide.style.display = 'flex';
+      }
+    };
+
+    switch (data) {
+      case 'battleship':
+        if (playerBoard.checkShipPlacement(battleship.length, x, y)) {
+          setBoardToDom(battleship);
+        }
+        break;
+      case 'carrier':
+        if (playerBoard.checkShipPlacement(carrier.length, x, y)) {
+          setBoardToDom(carrier);
+        }
+        break;
+      case 'submarine':
+        if (playerBoard.checkShipPlacement(submarine.length, x, y)) {
+          setBoardToDom(submarine);
+        }
+        break;
+      case 'destroyer':
+        if (playerBoard.checkShipPlacement(destroyer.length, x, y)) {
+          setBoardToDom(destroyer);
+        }
+        break;
+      case 'patrolboat':
+        if (playerBoard.checkShipPlacement(patrolboat.length, x, y)) {
+          setBoardToDom(patrolboat);
+        }
+        break;
+      default:
+        console.log('error in data');
+    }
+  };
+
+  // eventlistener to set name
+  domQueries().modalForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = domQueries().nameInpt.value || 'Player 1';
+    player.setName(name);
+    domQueries().playerName.textContent = `${player.getName()}'s board`;
+    domQueries().nameModal.style.display = 'none';
+  });
+
   return {
     carrier,
     battleship,
