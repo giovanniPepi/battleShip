@@ -6,12 +6,6 @@ const createEventListeners = () => {
   domQueries().playAgainButton.addEventListener('click', () => {
     window.location.reload();
   });
-
-  // nameSetter
-  domQueries().modalForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    buildGame().setDomName();
-  });
 };
 
 export default createEventListeners;

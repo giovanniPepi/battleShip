@@ -5,6 +5,8 @@ import AI from './ai';
 import placeAIShip from './placeAIShip';
 import domQueries from './domQueries';
 import makeDraggable from './makeDraggable';
+import updateDisplay from './updateDisplay';
+import endGame from './endgame';
 
 const buildGame = () => {
   // gameboards
@@ -42,53 +44,6 @@ const buildGame = () => {
   placeAIShip(AIdestroyer, aiBoard);
   placeAIShip(AIsubmarine, aiBoard);
   placeAIShip(AIpatrolboat, aiBoard);
-
-  // updates DOM
-  const updateDisplay = (boardName, board) => {
-    const boardArray = board.getGameBoard();
-    const missed = board.getMissedAttacks();
-
-    boardArray.forEach((row, y) => {
-      row.forEach((cell, x) => {
-        if (cell.shipName) {
-          if (
-            cell.shipName.checkHit(cell.shipName.getShip()[cell.shipIndex]) ===
-            true
-          ) {
-            const selectedCell = document.querySelector(
-              `.${boardName} [data-x="${x}"][data-y ="${y}"`
-            );
-            selectedCell.textContent = 'X';
-            selectedCell.classList.add('hit');
-            selectedCell.classList.remove('occupied');
-          } else if (
-            cell.shipName.checkHit(cell.shipName.getShip()[cell.shipIndex]) ===
-            false
-          ) {
-            if (boardName === 'playerBoard') {
-              const selectedCell = document.querySelector(
-                `.${boardName} [data-x="${x}"][data-y ="${y}"]`
-              );
-              selectedCell.classList.add('occupied');
-            }
-          }
-        }
-      });
-    });
-    missed.forEach((attack) => {
-      const selectedCell = document.querySelector(
-        `.${boardName} [data-x="${attack.x}"][data-y ="${attack.y}"]`
-      );
-      selectedCell.textContent = 'X';
-      selectedCell.classList.add('missed');
-    });
-  };
-
-  // calls for winner
-  const endGame = (winner) => {
-    domQueries().endGameModal.style.display = 'block';
-    domQueries().winnerText.textContent = `${winner} is the winner!`;
-  };
 
   // attacks
   const attack = (e) => {
@@ -192,13 +147,14 @@ const buildGame = () => {
   buildDOMboard('playerBoard');
   buildDOMboard('aiBoard');
 
-  //
-  const setDomName = () => {
+  // nameSetter
+  domQueries().modalForm.addEventListener('submit', (e) => {
+    e.preventDefault();
     const name = domQueries().nameInpt.value || 'Player 1';
     player.setName(name);
     domQueries().playerName.textContent = `${player.getName()}'s board`;
     domQueries().nameModal.style.display = 'none';
-  };
+  });
 
   return {
     carrier,
@@ -214,8 +170,7 @@ const buildGame = () => {
     playerBoard,
     aiBoard,
     player,
-    ai,
-    setDomName
+    ai
   };
 };
 
