@@ -192,19 +192,13 @@ const buildGame = () => {
   buildDOMboard('playerBoard');
   buildDOMboard('aiBoard');
 
-  // eventlistener to set name
-  domQueries().modalForm.addEventListener('submit', (e) => {
-    e.preventDefault();
+  //
+  const setDomName = () => {
     const name = domQueries().nameInpt.value || 'Player 1';
     player.setName(name);
     domQueries().playerName.textContent = `${player.getName()}'s board`;
     domQueries().nameModal.style.display = 'none';
-  });
-
-  //reloader
-  domQueries().playAgainButton.addEventListener('click', () => {
-    window.location.reload();
-  });
+  };
 
   return {
     carrier,
@@ -220,7 +214,8 @@ const buildGame = () => {
     playerBoard,
     aiBoard,
     player,
-    ai
+    ai,
+    setDomName
   };
 };
 
