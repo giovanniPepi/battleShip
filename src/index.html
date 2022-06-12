@@ -6,5 +6,55 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>BattleShip!</title>
   </head>
-  <body></body>
+  <body>
+    <header class="battleship">BattleShip</header>
+    <main class="content">
+      <section class="modal">
+        <form action="" class="name" novalidate>
+          <p>Player name:</p>
+          <input type="text" id="nameInpt" placeholder="Luke Seawalker" />
+          <input type="submit" value="Submit" id="submitBtn" />
+        </form>
+      </section>
+      <section class="gameBoard">
+        <section class="player">
+          <p id="playerName">Player Name's Board</p>
+          <div class="playerBoard"></div>
+        </section>
+        <section class="draggable">
+          <div class="ship" id="battleship" draggable="true">
+            <div class="block"></div>
+            <div class="block"></div>
+            <div class="block"></div>
+            <div class="block"></div>
+          </div>
+          <div class="ship" id="carrier" draggable="true">
+            <div class="block"></div>
+            <div class="block"></div>
+            <div class="block"></div>
+            <div class="block"></div>
+            <div class="block"></div>
+          </div>
+          <div class="ship" id="submarine" draggable="true">
+            <div class="block"></div>
+            <div class="block"></div>
+            <div class="block"></div>
+          </div>
+          <div class="ship" id="destroyer" draggable="true">
+            <div class="block"></div>
+            <div class="block"></div>
+            <div class="block"></div>
+          </div>
+          <div class="ship" id="patrolboat" draggable="true">
+            <div class="block"></div>
+            <div class="block"></div>
+          </div>
+        </section>
+        <section class="enemy">
+          <p>Enemy Board</p>
+          <div class="enemyBoard"></div>
+        </section>
+      </section>
+    </main>
+  </body>
 </html>
