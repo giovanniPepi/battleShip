@@ -9,7 +9,7 @@ import makeDraggable from './makeDraggable';
 const buildGame = () => {
   // gameboards
   const playerBoard = new GameBoard();
-  const AIBoard = new GameBoard();
+  const aiBoard = new GameBoard();
 
   // players
   const player = new Player();
@@ -37,43 +37,11 @@ const buildGame = () => {
   makeDraggable(domQueries().patrolboatHTML);
 
   // places AI Ships
-  placeAIShip(AIcarrier, AIBoard);
-  placeAIShip(AIbattleship, AIBoard);
-  placeAIShip(AIdestroyer, AIBoard);
-  placeAIShip(AIsubmarine, AIBoard);
-  placeAIShip(AIpatrolboat, AIBoard);
-
-  // places boards on DOM
-  const buildDOMboard = (boardName) => {
-    const boardClass = document.querySelector(`.${boardName}`);
-    for (let i = 0; i < 10; i += 1) {
-      for (let j = 0; j < 10; j += 1) {
-        const cell = document.createElement('div');
-        cell.classList.add('cell');
-        cell.setAttribute('data-x', j);
-        cell.setAttribute('data-y', i);
-
-        // adds attacking through DOM
-        if (boardName === 'AIBoard') {
-          cell.addEventListener('click', (e) => {
-            attack(e.target);
-          });
-        } else if (boardName === 'playerBoard') {
-          cell.addEventListener('dragover', (e) => {
-            e.preventDefault();
-          });
-          cell.addEventListener('drop', (e) => {
-            e.preventDefault();
-            dropShip(e);
-          });
-        }
-        boardClass.appendChild(cell);
-      }
-    }
-  };
-
-  buildDOMboard('playerBoard');
-  buildDOMboard('aiBoard');
+  placeAIShip(AIcarrier, aiBoard);
+  placeAIShip(AIbattleship, aiBoard);
+  placeAIShip(AIdestroyer, aiBoard);
+  placeAIShip(AIsubmarine, aiBoard);
+  placeAIShip(AIpatrolboat, aiBoard);
 
   // updates DOM
   const updateDisplay = (boardName, board) => {
@@ -88,7 +56,7 @@ const buildGame = () => {
             true
           ) {
             const selectedCell = document.querySelector(
-              `.${boardName} [data-x="${x}"][data-y ="${y}"]`
+              `.${boardName} [data-x="${x}"][data-y ="${y}"`
             );
             selectedCell.textContent = 'X';
             selectedCell.classList.add('hit');
@@ -124,14 +92,14 @@ const buildGame = () => {
 
   // attacks
   const attack = (e) => {
-    let x = e.getAttribute('data-x');
-    let y = e.getAttribute('data-y');
-    player.attack(x, y, ai, AIBoard);
-    updateDisplay('AIBoard', AIBoard);
+    const x = e.getAttribute('data-x');
+    const y = e.getAttribute('data-y');
+    player.attack(x, y, ai, aiBoard);
+    updateDisplay('aiBoard', aiBoard);
     e.style.pointerEvents = 'none';
 
     // checks if all ships are met and calls for winner before each round
-    if (AIBoard.checkAllSunk()) {
+    if (aiBoard.checkAllSunk()) {
       endGame(player.getName());
     }
 
@@ -154,10 +122,10 @@ const buildGame = () => {
       playerBoard.placeShip(boat, x, y);
       updateDisplay('playerBoard', playerBoard);
       const ship = document.querySelector(`#${data}`);
-      domQueries().addShips.removeChild(ship);
-      if (domQueries().addShips.childNodes.length <= 6) {
-        domQueries().addShips.style.display = 'none';
-        domQueries().aiSide.style.display = 'flex';
+      domQueries().draggable.removeChild(ship);
+      if (domQueries().draggable.childNodes.length <= 6) {
+        domQueries().draggable.style.display = 'none';
+        domQueries().enemy.style.display = 'flex';
       }
     };
 
@@ -192,6 +160,38 @@ const buildGame = () => {
     }
   };
 
+  // places boards on DOM
+  const buildDOMboard = (boardName) => {
+    const boardClass = document.querySelector(`.${boardName}`);
+    for (let i = 0; i < 10; i += 1) {
+      for (let j = 0; j < 10; j += 1) {
+        const cell = document.createElement('div');
+        cell.classList.add('cell');
+        cell.setAttribute('data-x', j);
+        cell.setAttribute('data-y', i);
+
+        // adds attacking through DOM
+        if (boardName === 'aiBoard') {
+          cell.addEventListener('click', (e) => {
+            attack(e.target);
+          });
+        } else if (boardName === 'playerBoard') {
+          cell.addEventListener('dragover', (e) => {
+            e.preventDefault();
+          });
+          cell.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dropShip(e);
+          });
+        }
+        boardClass.appendChild(cell);
+      }
+    }
+  };
+
+  buildDOMboard('playerBoard');
+  buildDOMboard('aiBoard');
+
   // eventlistener to set name
   domQueries().modalForm.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -199,6 +199,11 @@ const buildGame = () => {
     player.setName(name);
     domQueries().playerName.textContent = `${player.getName()}'s board`;
     domQueries().nameModal.style.display = 'none';
+  });
+
+  //reloader
+  domQueries().playAgainButton.addEventListener('click', () => {
+    window.location.reload();
   });
 
   return {
@@ -213,7 +218,7 @@ const buildGame = () => {
     AIsubmarine,
     AIpatrolboat,
     playerBoard,
-    AIBoard,
+    aiBoard,
     player,
     ai
   };

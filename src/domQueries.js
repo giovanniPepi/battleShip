@@ -4,14 +4,14 @@ const domQueries = () => {
   const submarineHTML = document.querySelector('#submarine');
   const destroyerHTML = document.querySelector('#destroyer');
   const patrolboatHTML = document.querySelector('#patrolboat');
-  const addShips = document.querySelector('.addShips');
-  const aiSide = document.querySelector('.aiSide');
+  const draggable = document.querySelector('.draggable');
+  const enemy = document.querySelector('.enemy');
   const nameModal = document.querySelector('.modal');
   const nameInpt = document.querySelector('#nameInpt');
   const modalForm = document.querySelector('#modalContent');
   const playerName = document.querySelector('#playerName');
   const endGameContent = document.querySelector('#endGameContent');
-  const endGameModal = document.querySelector('#endGameModal');
+  const endGameModal = document.querySelector('.endgame');
   const playAgainButton = document.querySelector('#playAgainButton');
   const winnerText = document.querySelector('#winnerText');
 
@@ -21,8 +21,8 @@ const domQueries = () => {
     submarineHTML,
     destroyerHTML,
     patrolboatHTML,
-    addShips,
-    aiSide,
+    draggable,
+    enemy,
     nameModal,
     nameInpt,
     modalForm,

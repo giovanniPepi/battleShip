@@ -7,7 +7,7 @@
     <title>BattleShip!</title>
   </head>
   <body>
-    <header class="battleship">BattleShip</header>
+    <header class="header">BattleShip</header>
     <main class="content">
       <section class="modal">
         <form action="" novalidate id="modalContent">
@@ -18,7 +18,7 @@
       </section>
       <section class="endgame">
         <div id="endGameContent">
-          <p id="winnerText">Placeholder is the Winner!!</p> 
+          <p id="winnerText"></p> 
           <input type="submit" value="Play Again"     id="playAgainButton">
       </section>
       <section class="gameBoard">
@@ -26,7 +26,12 @@
           <p id="playerName">Player Name's Board</p>
           <div class="playerBoard"></div>
         </section>
-        <section class="draggable">
+      </section>
+              <section class="enemy">
+          <p>Enemy Board</p>
+          <div class="aiBoard"></div>
+        </section>
+              <section class="draggable">
           <div class="ship" id="battleship" draggable="true">
             <div class="block"></div>
             <div class="block"></div>
@@ -55,11 +60,6 @@
             <div class="block"></div>
           </div>
         </section>
-        <section class="enemy">
-          <p>Enemy Board</p>
-          <div class="aiBoard"></div>
-        </section>
-      </section>
     </main>
   </body>
 </html>
