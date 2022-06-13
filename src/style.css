@@ -74,7 +74,7 @@ body {
   background-color: var(--amber1);
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-evenly;
   flex-wrap: wrap;
   gap: var(--megaGap);
 }
@@ -93,6 +93,7 @@ body {
 .draggable {
   flex-direction: row;
   justify-content: space-around;
+  justify-self: flex-end;
 }
 .shipBlock {
   background-color: rgb(89, 179, 71);
