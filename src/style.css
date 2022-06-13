@@ -9,6 +9,7 @@
   --fontSizeSemiHighlight: 1.2rem;
   --fontSizeHighlight: 1.8rem;
   --fontSizeExtra: 2rem;
+  --fontSizeHitMob: 1.3rem;
   --borderRadiusBig: 2rem;
   --borderRadiusSmall: 0.8rem;
   --miniPadding: 0.5rem;
@@ -42,6 +43,8 @@ svg {
   .shipBlock {
     min-width: var(--shipBlocksPc);
     min-height: var(--shipBlocksPc);
+    max-width: var(--shipBlocksPc);
+    max-height: var(--shipBlocksPc);
   }
   .header {
     height: 10vh;
@@ -50,6 +53,10 @@ svg {
   #playerName {
     font-size: var(--fontSizeHighlight);
     font-weight: bold;
+  }
+  .hit,
+  .missed {
+    font-size: var(--fontSizeExtra);
   }
 }
 
@@ -73,6 +80,10 @@ svg {
   #playerName {
     font-size: var(--fontSizeSemiHighlight);
     font-weight: bold;
+  }
+  .hit,
+  .missed {
+    font-size: var(--fontSizeHitMob);
   }
 }
 
@@ -119,7 +130,8 @@ svg {
   padding: var(--miniPadding);
 }
 #submitBtn,
-#playAgainButton {
+#playAgainButton,
+#endGameContent {
   max-width: 25vw;
   min-height: 5vh;
   font-size: var(--fontSizeSemiHighlight);
@@ -129,6 +141,11 @@ svg {
   border: var(--myBorder);
   border-radius: var(--borderRadiusSmall);
   padding: var(--miniPadding);
+}
+#endGameContent {
+  min-width: 40vw;
+  min-height: 25vh;
+  gap: var(--normalGap);
 }
 .content {
   padding: var(--bigPadding);
@@ -159,9 +176,6 @@ svg {
 .shipBlock {
   background-color: rgb(89, 179, 71);
 }
-.cell {
-  border: var(--shipBlocksBorder);
-}
 .playerBoard,
 .aiBoard {
   display: grid;
@@ -171,7 +185,6 @@ svg {
 .hit,
 .missed {
   color: var(--semiWhite);
-  font-size: var(--fontSizeExtra);
   font-weight: bold;
 }
 .hit {
@@ -212,21 +225,4 @@ svg {
   height: 100%;
   width: 100%;
   background-color: rgba(0, 0, 0, 0.4);
-}
-#endGameContent {
-  position: relative;
-  margin: auto;
-  background-color: #fefefe;
-  flex-direction: column;
-  justify-content: space-around;
-  box-sizing: border-box;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  padding: 30px;
-  border: 1px solid #888;
-  border-radius: 15px;
-  height: 30%;
-  width: 340px;
-  font-size: 23px;
-  color: indigo;
-  font-weight: bold;
 }

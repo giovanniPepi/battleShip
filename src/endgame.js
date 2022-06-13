@@ -2,7 +2,7 @@ import domQueries from './domQueries';
 
 // calls for winner
 const endGame = (winner) => {
-  domQueries().endGameModal.style.display = 'block';
+  domQueries().endGameModal.style.display = 'flex';
   domQueries().winnerText.textContent = `${winner} is the winner!`;
 };
 

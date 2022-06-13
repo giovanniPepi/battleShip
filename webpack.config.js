@@ -1,4 +1,3 @@
- 
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
@@ -6,41 +5,40 @@ module.exports = {
   entry: './src/index.js',
   devtool: 'inline-source-map',
   devServer: {
-    static: './dist',
+    static: './dist'
   },
   module: {
     rules: [
       {
         test: /\.css$/i,
-        use: ['style-loader', 'css-loader'],
+        use: ['style-loader', 'css-loader']
       },
       {
         test: /\.(ttf)$/i,
-        type: 'asset/resource',
+        type: 'asset/resource'
       },
       {
         test: /\.(png|jpg|jpeg)$/i,
-        type: 'asset/resource',
+        type: 'asset/resource'
       },
-      { 
-        test: /\.svg$/i, 
+      {
+        test: /\.svg$/i,
         loader: 'svg-inline-loader'
       },
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/i,
-        type: 'asset/resource',
-      },
-    ],
+        type: 'asset/resource'
+      }
+    ]
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './src/index.html',
-    }),
+      template: './src/index.html'
+    })
   ],
   output: {
     filename: 'main.js',
     path: path.resolve(__dirname, 'dist'),
-    clean: true,
-    publicPath: '/',
-  },
+    clean: true
+  }
 };
