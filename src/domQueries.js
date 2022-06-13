@@ -8,7 +8,7 @@ const domQueries = () => {
   const enemy = document.querySelector('.enemy');
   const nameModal = document.querySelector('.modal');
   const nameInpt = document.querySelector('#nameInpt');
-  const modalForm = document.querySelector('#modalContent');
+  const nameForm = document.querySelector('.nameForm');
   const playerName = document.querySelector('#playerName');
   const endGameContent = document.querySelector('#endGameContent');
   const endGameModal = document.querySelector('.endgame');
@@ -25,7 +25,7 @@ const domQueries = () => {
     enemy,
     nameModal,
     nameInpt,
-    modalForm,
+    nameForm,
     playerName,
     endGameContent,
     endGameModal,

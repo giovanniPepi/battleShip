@@ -148,7 +148,7 @@ const buildGame = () => {
   buildDOMboard('aiBoard');
 
   // nameSetter
-  domQueries().modalForm.addEventListener('submit', (e) => {
+  domQueries().nameForm.addEventListener('submit', (e) => {
     e.preventDefault();
     const name = domQueries().nameInpt.value || 'Player 1';
     player.setName(name);
