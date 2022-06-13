@@ -16,7 +16,8 @@
   --myBorder: 1px solid var(--slate0);
   --normalGap: 1.5rem;
   --megaGap: 5rem;
-  --shipBlocksPc: 3.5rem;
+  --shipBlocksPc: 3rem;
+  --shipBlocksMob: 1.9rem;
   --svgSize: 2rem;
   --shipBlocksBorder: #475569 solid 0.1rem;
 }
@@ -33,11 +34,51 @@ svg {
   height: var(--svgSize);
   padding: var(--miniPadding);
 }
+@media screen and (min-width: 1060px) {
+  .content {
+    flex-wrap: nowrap;
+  }
+  .cell,
+  .shipBlock {
+    min-width: var(--shipBlocksPc);
+    min-height: var(--shipBlocksPc);
+  }
+  .header {
+    height: 10vh;
+    font-size: var(--fontSizeExtra);
+  }
+  #playerName {
+    font-size: var(--fontSizeHighlight);
+    font-weight: bold;
+  }
+}
+
+@media screen and (max-width: 1059px) {
+  .content {
+    flex-wrap: wrap;
+  }
+  .cell,
+  .shipBlock {
+    min-width: var(--shipBlocksMob);
+    min-height: var(--shipBlocksMob);
+  }
+  .shipBlock {
+    max-width: var(--shipBlocksMob);
+    max-height: var(--shipBlocksMob);
+  }
+  .header {
+    height: 5vh;
+    font-size: var(--fontSizeSemiHighlight);
+  }
+  #playerName {
+    font-size: var(--fontSizeSemiHighlight);
+    font-weight: bold;
+  }
+}
+
 .header {
   background: var(--slate2);
   color: var(--semiWhite);
-  height: 10vh;
-  font-size: var(--fontSizeExtra);
 }
 
 .header,
@@ -60,8 +101,6 @@ svg {
   align-self: center;
   padding: var(--bigPadding);
   flex-direction: column;
-  max-width: 35vw;
-  min-height: 20vh;
   gap: 1rem;
   font-size: var(--fontSizeSemiHighlight);
   font-weight: bolder;
@@ -77,8 +116,6 @@ svg {
   margin: 0;
 }
 #playerName {
-  font-size: var(--fontSizeHighlight);
-  font-weight: bold;
   padding: var(--miniPadding);
 }
 #submitBtn,
@@ -98,7 +135,6 @@ svg {
   min-height: 90vh;
   background-color: var(--amber1);
   justify-content: space-evenly;
-  flex-wrap: wrap;
   gap: var(--normalGap);
 }
 .gameBoard,
@@ -114,18 +150,17 @@ svg {
 .draggable {
   flex-direction: row;
   justify-self: flex-end;
-  gap: var(--megaGap);
+  gap: var(--normalGap);
+}
+.shipBlock,
+.cell {
+  border: var(--shipBlocksBorder);
 }
 .shipBlock {
   background-color: rgb(89, 179, 71);
-  min-width: var(--shipBlocksPc);
-  min-height: var(--shipBlocksPc);
-  border: var(--shipBlocksBorder);
 }
 .cell {
   border: var(--shipBlocksBorder);
-  min-height: var(--shipBlocksPc);
-  min-width: var(--shipBlocksPc);
 }
 .playerBoard,
 .aiBoard {
