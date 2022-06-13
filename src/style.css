@@ -1,11 +1,3 @@
-body,
-html {
-  margin: 0;
-}
-body {
-  display: flex;
-  flex-direction: column;
-}
 :root {
   --slate0: #94a3b8;
   --slate1: #64748b;
@@ -22,16 +14,24 @@ body {
   --miniPadding: 0.5rem;
   --bigPadding: 1.5rem;
   --myBorder: 1px solid var(--slate0);
-  --normalGap: 1rem;
+  --normalGap: 1.5rem;
   --megaGap: 5rem;
   --shipBlocksPc: 5rem;
   --shipBlocksBorder: #475569 solid 0.1rem;
 }
+body,
+html {
+  margin: 0;
+}
+body {
+  display: flex;
+  flex-direction: column;
+}
 .header {
   background: var(--slate2);
   color: var(--semiWhite);
-  height: 8vh;
-  font-size: var(--fontSizeHighlight);
+  height: 10vh;
+  font-size: var(--fontSizeExtra);
 }
 
 .header,
@@ -69,6 +69,11 @@ body {
 #playerName {
   margin: 0;
 }
+#playerName {
+  font-size: var(--fontSizeHighlight);
+  font-weight: bold;
+  padding: var(--miniPadding);
+}
 #submitBtn,
 #playAgainButton {
   max-width: 25vw;
@@ -83,11 +88,11 @@ body {
 }
 .content {
   padding: var(--bigPadding);
-  min-height: 92vh;
+  min-height: 90vh;
   background-color: var(--amber1);
   justify-content: space-evenly;
   flex-wrap: wrap;
-  gap: var(--megaGap);
+  gap: var(--normalGap);
 }
 .gameBoard,
 .enemy,
@@ -102,7 +107,7 @@ body {
 .draggable {
   flex-direction: row;
   justify-self: flex-end;
-  gap: var(--normalGap);
+  gap: var(--megaGap);
 }
 .shipBlock {
   background-color: rgb(89, 179, 71);
@@ -139,9 +144,8 @@ body {
 .modal {
   position: fixed;
   z-index: 9999;
-  padding-top: 130px;
-  height: 100%;
-  width: 100%;
+  width: 100vw;
+  height: 100vh;
   background-color: rgba(0, 0, 0, 0.4);
 }
 #modalContent p {
