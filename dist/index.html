@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BattleShip!</title>
+  <script defer src="/main.js"></script></head>
+  <body>
+    <header class="header">BATTLESHIP</header>
+    <main class="content">
+      <section class="modal">
+        <form action="" novalidate class="nameForm">
+          <p>Player name:</p>
+          <input type="text" id="nameInpt" />
+          <input type="submit" value="Submit" id="submitBtn" />
+        </form>
+      </section>
+      <section class="endgame">
+        <div id="endGameContent">
+          <p id="winnerText"></p> 
+          <input type="submit" value="Play Again"     id="playAgainButton">
+      </section>
+      <section class="gameBoard">
+        <section class="player">
+          <p id="playerName">Player Name's Board</p>
+          <div class="playerBoard"></div>
+        </section>
+      </section>
+        <section class="enemy">
+          <p>Enemy Board</p>
+          <div class="aiBoard"></div>
+        </section>
+          <section class="draggable">
+            <div class="ship" id="battleship" draggable="true">
+              <div class="shipBlock"></div>
+              <div class="shipBlock"></div>
+              <div class="shipBlock"></div>
+              <div class="shipBlock"></div>
+            </div>
+            <div class="ship" id="carrier" draggable="true">
+              <div class="shipBlock"></div>
+              <div class="shipBlock"></div>
+              <div class="shipBlock"></div>
+              <div class="shipBlock"></div>
+              <div class="shipBlock"></div>
+            </div>
+            <div class="ship" id="submarine" draggable="true">
+              <div class="shipBlock"></div>
+              <div class="shipBlock"></div>
+              <div class="shipBlock"></div>
+            </div>
+            <div class="ship" id="destroyer" draggable="true">
+              <div class="shipBlock"></div>
+              <div class="shipBlock"></div>
+              <div class="shipBlock"></div>
+            </div>
+            <div class="ship" id="patrolboat" draggable="true">
+              <div class="shipBlock"></div>
+              <div class="shipBlock"></div>
+            </div>
+        </section>
+    </main>
+  </body>
+</html>
