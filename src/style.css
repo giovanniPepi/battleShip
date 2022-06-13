@@ -16,7 +16,8 @@
   --myBorder: 1px solid var(--slate0);
   --normalGap: 1.5rem;
   --megaGap: 5rem;
-  --shipBlocksPc: 5rem;
+  --shipBlocksPc: 3.5rem;
+  --svgSize: 2rem;
   --shipBlocksBorder: #475569 solid 0.1rem;
 }
 body,
@@ -26,6 +27,11 @@ html {
 body {
   display: flex;
   flex-direction: column;
+}
+svg {
+  width: var(--svgSize);
+  height: var(--svgSize);
+  padding: var(--miniPadding);
 }
 .header {
   background: var(--slate2);
@@ -43,6 +49,7 @@ body {
 .draggable,
 .player,
 .modal,
+.dragSvg,
 #endGameContent {
   display: flex;
   justify-content: center;
