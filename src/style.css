@@ -13,8 +13,10 @@ body {
   --semiWhite: #f1f5f9;
   --amber1: #fffbeb;
   --occupied: #d97706;
+  --hit: #dc2626;
   --fontSizeSemiHighlight: 1.2rem;
   --fontSizeHighlight: 1.8rem;
+  --fontSizeExtra: 2rem;
   --borderRadiusBig: 2rem;
   --borderRadiusSmall: 0.8rem;
   --miniPadding: 0.5rem;
@@ -30,6 +32,18 @@ body {
   color: var(--semiWhite);
   height: 8vh;
   font-size: var(--fontSizeHighlight);
+}
+
+.header,
+.nameForm,
+.content,
+.cell,
+.gameBoard,
+.enemy,
+.draggable,
+.player,
+.modal,
+#endGameContent {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -38,10 +52,7 @@ body {
   position: relative;
   align-self: center;
   padding: var(--bigPadding);
-  display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
   max-width: 35vw;
   min-height: 20vh;
   gap: 1rem;
@@ -74,8 +85,6 @@ body {
   padding: var(--bigPadding);
   min-height: 92vh;
   background-color: var(--amber1);
-  display: flex;
-  align-items: center;
   justify-content: space-evenly;
   flex-wrap: wrap;
   gap: var(--megaGap);
@@ -84,18 +93,16 @@ body {
 .enemy,
 .draggable,
 .player {
-  display: flex;
   flex-direction: column;
   align-content: space-around;
-  justify-content: center;
 }
 .enemy {
   display: none;
 }
 .draggable {
   flex-direction: row;
-  justify-content: space-around;
   justify-self: flex-end;
+  gap: var(--normalGap);
 }
 .shipBlock {
   background-color: rgb(89, 179, 71);
@@ -105,9 +112,6 @@ body {
 }
 .cell {
   border: var(--shipBlocksBorder);
-  display: flex;
-  justify-content: center;
-  align-items: center;
   min-height: var(--shipBlocksPc);
   min-width: var(--shipBlocksPc);
 }
@@ -117,25 +121,22 @@ body {
   grid-template-columns: repeat(10, 1fr);
   grid-template-rows: repeat(10, 1fr);
 }
-.hit {
-  background-color: tomato;
-  color: #5a5a5a;
-  font-size: large;
+.hit,
+.missed {
+  color: var(--semiWhite);
+  font-size: var(--fontSizeExtra);
   font-weight: bold;
+}
+.hit {
+  background-color: var(--hit);
+}
+.missed {
+  background-color: var(--slate1);
 }
 .occupied {
   background-color: var(--occupied);
 }
-.missed {
-  background-color: var(--slate1);
-  color: #5a5a5a;
-  font-size: large;
-  font-weight: bold;
-}
 .modal {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   position: fixed;
   z-index: 9999;
   padding-top: 130px;
@@ -170,10 +171,8 @@ body {
   position: relative;
   margin: auto;
   background-color: #fefefe;
-  display: flex;
   flex-direction: column;
   justify-content: space-around;
-  align-items: center;
   box-sizing: border-box;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   padding: 30px;
