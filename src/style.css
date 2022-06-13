@@ -11,13 +11,24 @@ body {
   --slate1: #64748b;
   --slate2: #475569;
   --semiWhite: #f1f5f9;
+  --amber1: #fffbeb;
   --fontSizeSemiHighlight: 1.2rem;
+  --fontSizeHighlight: 1.8rem;
+  --borderRadiusBig: 2rem;
+  --borderRadiusSmall: 0.8rem;
+  --miniPadding: 0.5rem;
+  --bigPadding: 1.5rem;
+  --myBorder: 1px solid var(--slate0);
+  --normalGap: 1rem;
+  --megaGap: 10rem;
+  --shipBlocks: 4rem;
+  --shipBlocksBorder: #475569 solid 0.1rem;
 }
 .header {
   background: var(--slate2);
   color: var(--semiWhite);
   height: 8vh;
-  font-size: var(--fontSizeSemiHighlight);
+  font-size: var(--fontSizeHighlight);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -25,31 +36,151 @@ body {
 .nameForm {
   position: relative;
   align-self: center;
-  padding: 1.5rem;
+  padding: var(--bigPadding);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   max-width: 35vw;
-  height: 20vh;
+  min-height: 20vh;
   gap: 1rem;
   font-size: var(--fontSizeSemiHighlight);
   font-weight: bolder;
   background-color: var(--slate2);
   color: var(--semiWhite);
   box-shadow: 0 6px 10px 0 rgba(1, 1, 1, 0.2), 0 8px 30px 0 rgba(2, 2, 2, 0.25);
-  border: 1px solid var(--slate0);
-  border-radius: 2rem;
+  border: var(--myBorder);
+  border-radius: var(--borderRadiusBig);
 }
 /* removes excess margins */
-.nameForm > * {
+.nameForm > *,
+#playerName {
   margin: 0;
 }
-
+#submitBtn,
+#playAgainButton {
+  max-width: 25vw;
+  min-height: 5vh;
+  font-size: var(--fontSizeSemiHighlight);
+  font-weight: bold;
+  color: var(--slate2);
+  background-color: var(--semiWhite);
+  border: var(--myBorder);
+  border-radius: var(--borderRadiusSmall);
+  padding: var(--miniPadding);
+}
 .content {
-  height: 80vh;
-  background-color: aliceblue;
+  height: 92vh;
+  background-color: var(--amber1);
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
+  gap: var(--megaGap);
+}
+.gameBoard,
+.enemy,
+.draggable,
+.player {
+  display: flex;
+  flex-direction: column;
+  align-content: space-around;
+  justify-content: center;
+}
+.enemy {
+  display: none;
+}
+.draggable {
+  flex-direction: row;
+  justify-content: space-around;
+}
+.shipBlock {
+  background-color: rgb(89, 179, 71);
+  min-width: var(--shipBlocks);
+  min-height: var(--shipBlocks);
+  border: var(--shipBlocksBorder);
+}
+.cell {
+  border: var(--shipBlocksBorder);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: var(--shipBlocks);
+  min-width: var(--shipBlocks);
+}
+.playerBoard,
+.aiBoard {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(10, 1fr);
+}
+.hit {
+  background-color: tomato;
+  color: #5a5a5a;
+  font-size: large;
+  font-weight: bold;
+}
+.occupied {
+  background-color: rgb(89, 179, 71);
+}
+.missed {
+  background-color: lightblue;
+  color: #5a5a5a;
+  font-size: large;
+  font-weight: bold;
+}
+
+.modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  z-index: 9999;
+  padding-top: 130px;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+#modalContent p {
+  padding: 0;
+  margin: 0;
+}
+#nameInpt {
+  width: 100%;
+  height: 40px;
+  font-size: 20px;
+  color: indigo;
+  margin-top: 14px;
+  border: #5a5a5a 2px solid;
+  border-radius: 7px;
+}
+.endgame {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  z-index: 9999;
+  padding-top: 130px;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+#endGameContent {
+  position: relative;
+  margin: auto;
+  background-color: #fefefe;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  box-sizing: border-box;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  padding: 30px;
+  border: 1px solid #888;
+  border-radius: 15px;
+  height: 30%;
+  width: 340px;
+  font-size: 23px;
+  color: indigo;
+  font-weight: bold;
 }
