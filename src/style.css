@@ -12,6 +12,7 @@ body {
   --slate2: #475569;
   --semiWhite: #f1f5f9;
   --amber1: #fffbeb;
+  --occupied: #d97706;
   --fontSizeSemiHighlight: 1.2rem;
   --fontSizeHighlight: 1.8rem;
   --borderRadiusBig: 2rem;
@@ -20,8 +21,8 @@ body {
   --bigPadding: 1.5rem;
   --myBorder: 1px solid var(--slate0);
   --normalGap: 1rem;
-  --megaGap: 10rem;
-  --shipBlocks: 4rem;
+  --megaGap: 5rem;
+  --shipBlocksPc: 5rem;
   --shipBlocksBorder: #475569 solid 0.1rem;
 }
 .header {
@@ -70,7 +71,8 @@ body {
   padding: var(--miniPadding);
 }
 .content {
-  height: 92vh;
+  padding: var(--bigPadding);
+  min-height: 92vh;
   background-color: var(--amber1);
   display: flex;
   align-items: center;
@@ -97,8 +99,8 @@ body {
 }
 .shipBlock {
   background-color: rgb(89, 179, 71);
-  min-width: var(--shipBlocks);
-  min-height: var(--shipBlocks);
+  min-width: var(--shipBlocksPc);
+  min-height: var(--shipBlocksPc);
   border: var(--shipBlocksBorder);
 }
 .cell {
@@ -106,8 +108,8 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: var(--shipBlocks);
-  min-width: var(--shipBlocks);
+  min-height: var(--shipBlocksPc);
+  min-width: var(--shipBlocksPc);
 }
 .playerBoard,
 .aiBoard {
@@ -122,15 +124,14 @@ body {
   font-weight: bold;
 }
 .occupied {
-  background-color: rgb(89, 179, 71);
+  background-color: var(--occupied);
 }
 .missed {
-  background-color: lightblue;
+  background-color: var(--slate1);
   color: #5a5a5a;
   font-size: large;
   font-weight: bold;
 }
-
 .modal {
   display: flex;
   align-items: center;
@@ -147,13 +148,12 @@ body {
   margin: 0;
 }
 #nameInpt {
-  width: 100%;
-  height: 40px;
-  font-size: 20px;
-  color: indigo;
-  margin-top: 14px;
-  border: #5a5a5a 2px solid;
-  border-radius: 7px;
+  height: auto;
+  color: var(--slate2);
+  border: var(--myBorder);
+  border-radius: var(--borderRadiusSmall);
+  font-size: var(--fontSizeSemiHighlight);
+  padding: var(--miniPadding);
 }
 .endgame {
   display: none;
