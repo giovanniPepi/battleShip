@@ -141,7 +141,7 @@ svg {
 #submitBtn,
 #playAgainButton,
 #endGameContent {
-  max-width: 25vw;
+  max-width: 85vw;
   min-height: 5vh;
   font-size: var(--fontSizeSemiHighlight);
   font-weight: bold;
@@ -152,7 +152,7 @@ svg {
   padding: var(--miniPadding);
 }
 #endGameContent {
-  min-width: 40vw;
+  min-width: 50vw;
   min-height: 15vh;
   gap: var(--normalGap);
 }
