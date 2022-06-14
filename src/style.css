@@ -1,34 +1,117 @@
-body,
-html {
-  margin: 0;
-}
-body {
-  display: flex;
-  flex-direction: column;
-}
 :root {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   --slate0: #94a3b8;
   --slate1: #64748b;
   --slate2: #475569;
+  --slate3: #f1f5f9;
+  --limte5: #84cc16;
   --semiWhite: #f1f5f9;
-  --amber1: #fffbeb;
+  --amber1: #fde68a;
+  --amber2: #fffbeb;
+  --occupied: #d97706;
+  --hit: #dc2626;
   --fontSizeSemiHighlight: 1.2rem;
   --fontSizeHighlight: 1.8rem;
+  --fontSizeExtra: 1.9rem;
+  --fontSizeHitMob: 1.3rem;
   --borderRadiusBig: 2rem;
   --borderRadiusSmall: 0.8rem;
   --miniPadding: 0.5rem;
   --bigPadding: 1.5rem;
   --myBorder: 1px solid var(--slate0);
-  --normalGap: 1rem;
-  --megaGap: 10rem;
-  --shipBlocks: 4rem;
+  --normalGap: 1.5rem;
+  --megaGap: 5rem;
+  --shipBlocksPc: 3rem;
+  --shipBlocksMob: 1.9rem;
+  --svgSize: 1.5rem;
   --shipBlocksBorder: #475569 solid 0.1rem;
 }
+body,
+html {
+  margin: 0;
+  min-height: 100vh;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+svg {
+  width: var(--svgSize);
+  height: var(--svgSize);
+  padding: var(--miniPadding);
+}
+@media screen and (min-width: 1060px) {
+  .content {
+    flex-wrap: nowrap;
+  }
+  .cell,
+  .shipBlock {
+    min-width: var(--shipBlocksPc);
+    min-height: var(--shipBlocksPc);
+    max-width: var(--shipBlocksPc);
+    max-height: var(--shipBlocksPc);
+  }
+  .header {
+    min-height: 8vh;
+    font-size: var(--fontSizeExtra);
+  }
+  #playerName {
+    font-size: var(--fontSizeSemiHighlight);
+    font-weight: bold;
+  }
+  .hit,
+  .missed {
+    font-size: var(--fontSizeExtra);
+  }
+}
+
+@media screen and (max-width: 1059px) {
+  .content {
+    flex-wrap: wrap;
+  }
+  .cell,
+  .shipBlock {
+    min-width: var(--shipBlocksMob);
+    min-height: var(--shipBlocksMob);
+  }
+  .shipBlock {
+    max-width: var(--shipBlocksMob);
+    max-height: var(--shipBlocksMob);
+  }
+  .header {
+    height: 5vh;
+    font-size: var(--fontSizeSemiHighlight);
+  }
+  #playerName {
+    font-size: var(--fontSizeSemiHighlight);
+    font-weight: bold;
+  }
+  .hit,
+  .missed {
+    font-size: var(--fontSizeHitMob);
+  }
+}
+
 .header {
   background: var(--slate2);
   color: var(--semiWhite);
-  height: 8vh;
-  font-size: var(--fontSizeHighlight);
+}
+
+.header,
+.nameForm,
+.content,
+.cell,
+.gameBoard,
+.enemy,
+.draggable,
+.player,
+.modal,
+.dragSvg,
+.carrier,
+.ship,
+#endGameContent {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -37,12 +120,7 @@ body {
   position: relative;
   align-self: center;
   padding: var(--bigPadding);
-  display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  max-width: 35vw;
-  min-height: 20vh;
   gap: 1rem;
   font-size: var(--fontSizeSemiHighlight);
   font-weight: bolder;
@@ -57,9 +135,13 @@ body {
 #playerName {
   margin: 0;
 }
+#playerName {
+  padding: var(--miniPadding);
+}
 #submitBtn,
-#playAgainButton {
-  max-width: 25vw;
+#playAgainButton,
+#endGameContent {
+  max-width: 85vw;
   min-height: 5vh;
   font-size: var(--fontSizeSemiHighlight);
   font-weight: bold;
@@ -69,44 +151,42 @@ body {
   border-radius: var(--borderRadiusSmall);
   padding: var(--miniPadding);
 }
+#endGameContent {
+  min-width: 50vw;
+  min-height: 15vh;
+  gap: var(--normalGap);
+}
 .content {
-  height: 92vh;
-  background-color: var(--amber1);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: var(--megaGap);
+  padding: var(--bigPadding);
+  min-height: 90vh;
+  background-color: var(--slate3);
+  justify-content: space-evenly;
+  gap: var(--normalGap);
 }
 .gameBoard,
 .enemy,
 .draggable,
 .player {
-  display: flex;
   flex-direction: column;
   align-content: space-around;
-  justify-content: center;
+  min-width: 45vw;
 }
 .enemy {
   display: none;
 }
 .draggable {
+  min-width: 45vw;
   flex-direction: row;
-  justify-content: space-around;
+  justify-self: flex-end;
+  gap: var(--normalGap);
 }
-.shipBlock {
-  background-color: rgb(89, 179, 71);
-  min-width: var(--shipBlocks);
-  min-height: var(--shipBlocks);
-  border: var(--shipBlocksBorder);
-}
+.shipBlock,
 .cell {
   border: var(--shipBlocksBorder);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: var(--shipBlocks);
-  min-width: var(--shipBlocks);
+  background-color: var(--slate0);
+}
+.shipBlock {
+  background-color: var(--limte5);
 }
 .playerBoard,
 .aiBoard {
@@ -114,31 +194,25 @@ body {
   grid-template-columns: repeat(10, 1fr);
   grid-template-rows: repeat(10, 1fr);
 }
-.hit {
-  background-color: tomato;
-  color: #5a5a5a;
-  font-size: large;
+.hit,
+.missed {
+  color: var(--semiWhite);
   font-weight: bold;
 }
-.occupied {
-  background-color: rgb(89, 179, 71);
+.hit {
+  background-color: var(--hit);
 }
 .missed {
-  background-color: lightblue;
-  color: #5a5a5a;
-  font-size: large;
-  font-weight: bold;
+  background-color: var(--slate1);
 }
-
+.occupied {
+  background-color: var(--occupied);
+}
 .modal {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   position: fixed;
   z-index: 9999;
-  padding-top: 130px;
-  height: 100%;
-  width: 100%;
+  width: 100vw;
+  height: 100vh;
   background-color: rgba(0, 0, 0, 0.4);
 }
 #modalContent p {
@@ -146,13 +220,12 @@ body {
   margin: 0;
 }
 #nameInpt {
-  width: 100%;
-  height: 40px;
-  font-size: 20px;
-  color: indigo;
-  margin-top: 14px;
-  border: #5a5a5a 2px solid;
-  border-radius: 7px;
+  height: auto;
+  color: var(--slate2);
+  border: var(--myBorder);
+  border-radius: var(--borderRadiusSmall);
+  font-size: var(--fontSizeSemiHighlight);
+  padding: var(--miniPadding);
 }
 .endgame {
   display: none;
@@ -165,22 +238,7 @@ body {
   width: 100%;
   background-color: rgba(0, 0, 0, 0.4);
 }
-#endGameContent {
-  position: relative;
-  margin: auto;
-  background-color: #fefefe;
-  display: flex;
+/* center ships and SVGs */
+.ship {
   flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  box-sizing: border-box;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  padding: 30px;
-  border: 1px solid #888;
-  border-radius: 15px;
-  height: 30%;
-  width: 340px;
-  font-size: 23px;
-  color: indigo;
-  font-weight: bold;
 }

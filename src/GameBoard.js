@@ -4,6 +4,7 @@ class GameBoard {
     this.missedAttacks = [];
   }
 
+  // eslint-disable-next-line class-methods-use-this
   buildGameBoard() {
     const array = [];
     let arrayItem = [];
@@ -26,7 +27,6 @@ class GameBoard {
     // conditions that extrapolate the gameboard
     const invalidConditions =
       x > 10 || x < 0 || y > 10 || y < 0 || y + length > 10;
-
     if (invalidConditions) return false;
 
     // checks existing ships

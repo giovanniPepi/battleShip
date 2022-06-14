@@ -4,6 +4,7 @@ class Ship {
     this.ship = this.buildShip();
   }
 
+  // builds an array of hittable entries for every ship
   buildShip() {
     const shipArray = [];
     let i = this.length;
@@ -28,6 +29,7 @@ class Ship {
   }
 
   // eslint-disable-next-line class-methods-use-this
+  // checks array position for hit
   checkHit(item) {
     if (item.hit === true) {
       return true;
@@ -35,6 +37,7 @@ class Ship {
     return false;
   }
 
+  // checks wether every position on the array is hit
   isSunk() {
     if (this.ship.every(this.checkHit)) {
       return true;
