@@ -1,6 +1,5 @@
 // updates DOM
-const updateDisplay = (boardName, board, lastAttack) => {
-  console.log(lastAttack);
+const updateDisplay = (boardName, board) => {
   const boardArray = board.getGameBoard();
   const missed = board.getMissedAttacks();
 

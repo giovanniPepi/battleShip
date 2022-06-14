@@ -61,7 +61,11 @@ const buildGame = () => {
       endGame(player.getName());
     }
 
+    // attacks, return the last sucessfull attack
     const lastAttack = ai.generateRandomAttack();
+    if (playerBoard.getLastSuccessfulAttack().length > 0) {
+      console.log(playerBoard.getLastSuccessfulAttack());
+    }
     updateDisplay('playerBoard', playerBoard, lastAttack);
 
     if (playerBoard.checkAllSunk()) {

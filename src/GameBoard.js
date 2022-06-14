@@ -3,6 +3,7 @@ class GameBoard {
     this.gameBoardArray = this.buildGameBoard();
     this.missedAttacks = [];
     this.successfulAttacks = [];
+    this.lastSuccessfulAttack = [];
   }
 
   // eslint-disable-next-line class-methods-use-this
@@ -56,8 +57,10 @@ class GameBoard {
         this.gameBoardArray[y][x].shipIndex
       );
       this.successfulAttacks.push({ x, y });
-      console.log(this.successfulAttacks);
+      this.lastSuccessfulAttack = [];
+      this.lastSuccessfulAttack.push({ x, y });
     }
+    return this.successfulAttacks;
   }
 
   getMissedAttacks() {
@@ -66,6 +69,10 @@ class GameBoard {
 
   getSuccessfulAttacks() {
     return this.successfulAttacks;
+  }
+
+  getLastSuccessfulAttack() {
+    return this.lastSuccessfulAttack;
   }
 
   // changes boolean to true if any ship inside is not sunk

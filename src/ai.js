@@ -42,10 +42,6 @@ class AI extends Player {
     }
     return this.lastAttack;
   }
-
-  getAttackArray() {
-    return this.attackArray;
-  }
 }
 
 export default AI;
