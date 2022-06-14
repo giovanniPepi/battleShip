@@ -52,21 +52,20 @@ const buildGame = () => {
 
     player.attack(x, y, ai, aiBoard);
     updateDisplay('aiBoard', aiBoard, false);
-
     // disble clicking on already hit places
     e.style.pointerEvents = 'none';
-
     // checks if all ships are hit and calls for winner before each round
     if (aiBoard.checkAllSunk()) {
       endGame(player.getName());
     }
 
     // attacks, return the last sucessfull attack
+
     const lastAttack = ai.generateRandomAttack();
+    updateDisplay('playerBoard', playerBoard, lastAttack);
     if (playerBoard.getLastSuccessfulAttack().length > 0) {
       console.log(playerBoard.getLastSuccessfulAttack());
     }
-    updateDisplay('playerBoard', playerBoard, lastAttack);
 
     if (playerBoard.checkAllSunk()) {
       endGame('AI');

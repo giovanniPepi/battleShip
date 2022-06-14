@@ -52,12 +52,13 @@ class GameBoard {
   receiveAttack(x, y) {
     if (this.gameBoardArray[y][x].shipName === undefined) {
       this.missedAttacks.push({ x, y });
+      this.lastSuccessfulAttack.pop();
     } else {
       this.gameBoardArray[y][x].shipName.hit(
         this.gameBoardArray[y][x].shipIndex
       );
       this.successfulAttacks.push({ x, y });
-      this.lastSuccessfulAttack = [];
+      this.lastSuccessfulAttack.pop();
       this.lastSuccessfulAttack.push({ x, y });
     }
     return this.successfulAttacks;

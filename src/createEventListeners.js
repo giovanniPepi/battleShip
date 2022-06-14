@@ -10,7 +10,7 @@ const createEventListeners = () => {
   const processKbdInpt = (e, key) => {
     if (key === 'Enter') {
       const submit = document.querySelector('#submitBtn');
-      submit.submit();
+      submit.click();
     } else domQueries().nameInpt.focus();
   };
   window.addEventListener('keydown', (e) => {
