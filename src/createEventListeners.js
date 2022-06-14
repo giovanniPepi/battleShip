@@ -7,14 +7,14 @@ const createEventListeners = () => {
   });
 
   // focus on name window
-  const processKbdInpt = (key) => {
+  const processKbdInpt = (e, key) => {
     if (key === 'Enter') {
-      key.preventDefault();
-      domQueries().nameForm.submit();
+      const submit = document.querySelector('#submitBtn');
+      submit.submit();
     } else domQueries().nameInpt.focus();
   };
   window.addEventListener('keydown', (e) => {
-    processKbdInpt(e.key);
+    processKbdInpt(e, e.key);
   });
 };
 
