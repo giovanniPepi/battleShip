@@ -1,4 +1,5 @@
 import mouseSvg from './img/gesture-tap.svg';
+
 const setSvg = () => {
   const svgContainers = document.querySelectorAll('.dragSvg');
 

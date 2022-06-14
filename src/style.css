@@ -1,14 +1,18 @@
 :root {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   --slate0: #94a3b8;
   --slate1: #64748b;
   --slate2: #475569;
+  --slate3: #f1f5f9;
   --semiWhite: #f1f5f9;
-  --amber1: #fffbeb;
+  --amber1: #fde68a;
+  --amber2: #fffbeb;
   --occupied: #d97706;
   --hit: #dc2626;
   --fontSizeSemiHighlight: 1.2rem;
   --fontSizeHighlight: 1.8rem;
-  --fontSizeExtra: 2rem;
+  --fontSizeExtra: 1.9rem;
   --fontSizeHitMob: 1.3rem;
   --borderRadiusBig: 2rem;
   --borderRadiusSmall: 0.8rem;
@@ -47,7 +51,7 @@ svg {
     max-height: var(--shipBlocksPc);
   }
   .header {
-    height: 10vh;
+    height: 8vh;
     font-size: var(--fontSizeExtra);
   }
   #playerName {
@@ -152,7 +156,7 @@ svg {
 .content {
   padding: var(--bigPadding);
   min-height: 90vh;
-  background-color: var(--amber1);
+  background-color: var(--slate3);
   justify-content: space-evenly;
   gap: var(--normalGap);
 }
@@ -162,12 +166,12 @@ svg {
 .player {
   flex-direction: column;
   align-content: space-around;
+  min-width: 45vw;
 }
 .enemy {
   display: none;
 }
 .draggable {
-  min-width: 40vw;
   flex-direction: row;
   justify-self: flex-end;
   gap: var(--normalGap);
@@ -175,6 +179,7 @@ svg {
 .shipBlock,
 .cell {
   border: var(--shipBlocksBorder);
+  background-color: var(--slate0);
 }
 .shipBlock {
   background-color: rgb(89, 179, 71);
