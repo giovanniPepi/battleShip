@@ -4,6 +4,7 @@ class GameBoard {
     this.missedAttacks = [];
   }
 
+  // eslint-disable-next-line class-methods-use-this
   buildGameBoard() {
     const array = [];
     let arrayItem = [];

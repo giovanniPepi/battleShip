@@ -1,5 +1,4 @@
 import domQueries from './domQueries';
-import buildGame from './buildGame';
 
 const createEventListeners = () => {
   // reloader
