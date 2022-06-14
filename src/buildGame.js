@@ -49,11 +49,14 @@ const buildGame = () => {
   const attack = (e) => {
     const x = e.getAttribute('data-x');
     const y = e.getAttribute('data-y');
+
     player.attack(x, y, ai, aiBoard);
     updateDisplay('aiBoard', aiBoard);
+
+    // disble clicking on already hit places
     e.style.pointerEvents = 'none';
 
-    // checks if all ships are met and calls for winner before each round
+    // checks if all ships are hit and calls for winner before each round
     if (aiBoard.checkAllSunk()) {
       endGame(player.getName());
     }
