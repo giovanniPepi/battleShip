@@ -150,7 +150,7 @@ svg {
 }
 #endGameContent {
   min-width: 40vw;
-  min-height: 25vh;
+  min-height: 15vh;
   gap: var(--normalGap);
 }
 .content {
@@ -172,6 +172,7 @@ svg {
   display: none;
 }
 .draggable {
+  min-width: 40vw;
   flex-direction: row;
   justify-self: flex-end;
   gap: var(--normalGap);
