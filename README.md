@@ -7,4 +7,6 @@ Battleship game using JS
 
 
 
-https://user-images.githubusercontent.com/5255535/173586548-b05a39ce-fde2-4630-9e0f-ba71a620a340.mp4
+
+https://user-images.githubusercontent.com/5255535/173586728-f8c5a8a7-d522-43e4-987d-40acaf4f0405.mp4
+
