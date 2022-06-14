@@ -51,7 +51,7 @@ const buildGame = () => {
     const y = e.getAttribute('data-y');
 
     player.attack(x, y, ai, aiBoard);
-    updateDisplay('aiBoard', aiBoard);
+    updateDisplay('aiBoard', aiBoard, false);
 
     // disble clicking on already hit places
     e.style.pointerEvents = 'none';
@@ -61,8 +61,8 @@ const buildGame = () => {
       endGame(player.getName());
     }
 
-    ai.generateRandomAttack();
-    updateDisplay('playerBoard', playerBoard);
+    const lastAttack = ai.generateRandomAttack();
+    updateDisplay('playerBoard', playerBoard, lastAttack);
 
     if (playerBoard.checkAllSunk()) {
       endGame('AI');

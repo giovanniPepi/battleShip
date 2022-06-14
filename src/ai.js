@@ -7,6 +7,7 @@ class AI extends Player {
     this.enemyPlayer = enemy;
     this.enemyBoard = enemyBoard;
     this.attackArray = [];
+    this.lastAttack = [];
   }
 
   generateRandomAttack() {
@@ -26,7 +27,9 @@ class AI extends Player {
         );
 
         if (!previousAttack) {
+          this.lastAttack = [];
           this.attackArray.push(numberObj);
+          this.lastAttack.push(numberObj);
           this.attack(
             numberObj.x,
             numberObj.y,
@@ -37,6 +40,7 @@ class AI extends Player {
         }
       }
     }
+    return this.lastAttack;
   }
 
   getAttackArray() {
